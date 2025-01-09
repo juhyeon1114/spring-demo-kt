@@ -23,4 +23,8 @@ class Post {
         }
     }
 
+    fun update(content: String) {
+        this.content = content
+    }
+
 }
