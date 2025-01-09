@@ -1,6 +1,8 @@
 package study.springkts.domain.post.service.impl
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PagedModel
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import study.springkts.domain.post.model.Post
@@ -19,6 +21,10 @@ class PostReadServiceImpl @Autowired constructor(
 
     override fun getById(id: Long): Post {
         return postRepository.getById(id)
+    }
+
+    override fun getPage(pageable: Pageable): PagedModel<Post?> {
+        return postRepository.getPage(pageable)
     }
 
 }

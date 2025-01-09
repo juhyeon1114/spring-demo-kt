@@ -1,17 +1,13 @@
 package study.springkts.domain.post.controller
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.data.web.PagedModel
+import org.springframework.web.bind.annotation.*
 import study.springkts.domain.post.model.Post
 import study.springkts.domain.post.model.PostCreateRequest
 import study.springkts.domain.post.service.PostReadService
 import study.springkts.domain.post.service.PostService
+import study.springkts.global.utils.pageable
 
 @RestController
 @RequestMapping("/post")
@@ -19,6 +15,14 @@ class PostController @Autowired constructor(
     private val postService: PostService,
     private val postReadService: PostReadService
 ) {
+
+    @GetMapping("/page")
+    fun page(
+        @RequestParam("page", defaultValue = "0") page: Int,
+        @RequestParam("size", defaultValue = "10") size: Int
+    ): PagedModel<Post?> {
+        return postReadService.getPage(pageable(page, size))
+    }
 
     @GetMapping
     fun findAll(): List<Post?> {

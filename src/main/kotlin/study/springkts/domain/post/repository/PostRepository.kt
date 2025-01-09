@@ -1,8 +1,12 @@
 package study.springkts.domain.post.repository
 
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PagedModel
 import study.springkts.domain.post.model.Post
 
 interface PostRepository {
+
+    fun getPage(pageable: Pageable): PagedModel<Post?>
 
     fun findAll(): List<Post?>
 
