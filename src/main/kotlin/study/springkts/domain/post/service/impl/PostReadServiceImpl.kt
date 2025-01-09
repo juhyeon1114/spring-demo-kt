@@ -2,6 +2,7 @@ package study.springkts.domain.post.service.impl
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
+import org.springframework.data.support.PageableExecutionUtils
 import org.springframework.data.web.PagedModel
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -24,7 +25,9 @@ class PostReadServiceImpl @Autowired constructor(
     }
 
     override fun getPage(pageable: Pageable): PagedModel<Post?> {
-        return postRepository.getPage(pageable)
+        val posts = postRepository.getPageItems(pageable)
+        val count = postRepository.getCount()
+        return PagedModel(PageableExecutionUtils.getPage<Post?>(posts, pageable) { count })
     }
 
 }

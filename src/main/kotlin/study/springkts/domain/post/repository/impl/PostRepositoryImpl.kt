@@ -2,20 +2,28 @@ package study.springkts.domain.post.repository.impl
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
-import org.springframework.data.support.PageableExecutionUtils
-import org.springframework.data.web.PagedModel
 import org.springframework.stereotype.Repository
 import study.springkts.domain.post.model.Post
-import study.springkts.domain.post.repository.jpa.PostJpaRepository
 import study.springkts.domain.post.repository.PostRepository
+import study.springkts.domain.post.repository.jpa.PostJpaRepository
 
 @Repository
 class PostRepositoryImpl @Autowired constructor(
     private val postJpaRepository: PostJpaRepository
 ) : PostRepository {
 
-    override fun getPage(pageable: Pageable): PagedModel<Post?> {
-        val posts = postJpaRepository.findAll(pageable, init = {
+    override fun getCount(): Long {
+        return postJpaRepository.findAll {
+            select(
+                count(path(Post::id))
+            ).from(
+                entity(Post::class)
+            )
+        }.first() ?: 0
+    }
+
+    override fun getPageItems(pageable: Pageable): List<Post?> {
+        return postJpaRepository.findAll(pageable, init = {
             select(
                 entity(Post::class)
             ).from(
@@ -24,16 +32,6 @@ class PostRepositoryImpl @Autowired constructor(
                 path(Post::id).asc()
             )
         })
-
-        val count = postJpaRepository.findAll {
-            select(
-                count(path(Post::id))
-            ).from(
-                entity(Post::class)
-            )
-        }.first()
-
-        return PagedModel(PageableExecutionUtils.getPage<Post?>(posts, pageable) { count ?: 0 })
     }
 
     override fun findAll(): List<Post?> {
