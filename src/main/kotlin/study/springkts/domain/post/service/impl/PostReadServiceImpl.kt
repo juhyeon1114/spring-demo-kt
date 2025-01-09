@@ -13,7 +13,7 @@ class PostReadServiceImpl @Autowired constructor(
     private val postRepository: PostRepository
 ) : PostReadService {
 
-    override fun findAll(): List<Post> {
+    override fun findAll(): List<Post?> {
         return postRepository.findAll()
     }
 

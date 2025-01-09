@@ -21,7 +21,7 @@ class PostController @Autowired constructor(
 ) {
 
     @GetMapping
-    fun findAll(): List<Post> {
+    fun findAll(): List<Post?> {
         return postReadService.findAll()
     }
 

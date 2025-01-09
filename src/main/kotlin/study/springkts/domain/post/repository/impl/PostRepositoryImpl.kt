@@ -11,7 +11,7 @@ class PostRepositoryImpl @Autowired constructor(
     private val postJpaRepository: PostJpaRepository
 ) : PostRepository {
 
-    override fun findAll(): List<Post> {
+    override fun findAll(): List<Post?> {
         return postJpaRepository.findAll {
             select(
                 entity(Post::class)
@@ -20,7 +20,7 @@ class PostRepositoryImpl @Autowired constructor(
             ).orderBy(
                 path(Post::id).asc()
             )
-        }.filterNotNull()
+        }
     }
 
     override fun save(post: Post) {
@@ -58,7 +58,7 @@ class PostRepositoryImpl @Autowired constructor(
             ).where(
                 path(Post::id).eq(id)
             )
-        }.first()
+        }.firstOrNull()
     }
 
 }

@@ -4,7 +4,7 @@ import study.springkts.domain.post.model.Post
 
 interface PostRepository {
 
-    fun findAll(): List<Post>
+    fun findAll(): List<Post?>
 
     fun save(post: Post)
 
