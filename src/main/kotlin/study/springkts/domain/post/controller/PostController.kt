@@ -7,6 +7,7 @@ import study.springkts.domain.post.model.Post
 import study.springkts.domain.post.model.PostCreateRequest
 import study.springkts.domain.post.service.PostReadService
 import study.springkts.domain.post.service.PostService
+import study.springkts.global.utils.logger
 import study.springkts.global.utils.pageable
 
 @RestController
@@ -21,6 +22,7 @@ class PostController @Autowired constructor(
         @RequestParam("page", defaultValue = "0") page: Int,
         @RequestParam("size", defaultValue = "10") size: Int
     ): PagedModel<Post?> {
+        logger.info { "page: $page, size: $size" }
         return postReadService.getPage(pageable(page, size))
     }
 
