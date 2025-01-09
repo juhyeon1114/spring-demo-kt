@@ -1,4 +1,4 @@
-package study.springkts.domain.post.repository
+package study.springkts.domain.post.repository.jpa
 
 import com.linecorp.kotlinjdsl.support.spring.data.jpa.repository.KotlinJdslJpqlExecutor
 import org.springframework.data.jpa.repository.JpaRepository

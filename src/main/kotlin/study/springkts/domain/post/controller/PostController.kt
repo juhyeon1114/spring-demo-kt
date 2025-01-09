@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.web.PagedModel
 import org.springframework.web.bind.annotation.*
 import study.springkts.domain.post.model.Post
-import study.springkts.domain.post.model.PostCreateRequest
+import study.springkts.domain.post.model.dto.PostCreateRequest
 import study.springkts.domain.post.service.PostReadService
 import study.springkts.domain.post.service.PostService
 import study.springkts.global.utils.logger

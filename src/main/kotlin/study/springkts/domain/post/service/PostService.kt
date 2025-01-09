@@ -1,6 +1,6 @@
 package study.springkts.domain.post.service
 
-import study.springkts.domain.post.model.PostCreateRequest
+import study.springkts.domain.post.model.dto.PostCreateRequest
 
 interface PostService {
 

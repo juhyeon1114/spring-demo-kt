@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import study.springkts.domain.post.model.Post
-import study.springkts.domain.post.model.PostCreateRequest
+import study.springkts.domain.post.model.dto.PostCreateRequest
 import study.springkts.domain.post.repository.PostRepository
 import study.springkts.domain.post.service.PostService
 

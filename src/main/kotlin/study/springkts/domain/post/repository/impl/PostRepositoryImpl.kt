@@ -6,7 +6,7 @@ import org.springframework.data.support.PageableExecutionUtils
 import org.springframework.data.web.PagedModel
 import org.springframework.stereotype.Repository
 import study.springkts.domain.post.model.Post
-import study.springkts.domain.post.repository.PostJpaRepository
+import study.springkts.domain.post.repository.jpa.PostJpaRepository
 import study.springkts.domain.post.repository.PostRepository
 
 @Repository
