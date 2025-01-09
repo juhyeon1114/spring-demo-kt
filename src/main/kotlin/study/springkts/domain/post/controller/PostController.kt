@@ -1,8 +1,11 @@
 package study.springkts.domain.post.controller
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import study.springkts.domain.post.model.Post
@@ -18,7 +21,7 @@ class PostController @Autowired constructor(
 ) {
 
     @GetMapping
-    fun findAll(): List<Post>  {
+    fun findAll(): List<Post> {
         return postReadService.findAll()
     }
 
@@ -27,9 +30,19 @@ class PostController @Autowired constructor(
         postService.save(request)
     }
 
+    @PutMapping("/{id}")
+    fun update(@PathVariable("id") id: Long, content: String) {
+        postService.update(id, content)
+    }
+
     @GetMapping("/{id}")
-    fun getById(id: Long): Post {
+    fun getById(@PathVariable("id") id: Long): Post {
         return postReadService.getById(id)
+    }
+
+    @DeleteMapping("/{id}")
+    fun deleteById(@PathVariable("id") id: Long) {
+        postService.deleteById(id)
     }
 
 }

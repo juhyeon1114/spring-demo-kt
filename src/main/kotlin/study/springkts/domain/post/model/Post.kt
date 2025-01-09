@@ -11,7 +11,16 @@ class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null
-    val title: String? = null
-    val content: String? = null
+    var title: String? = null
+    var content: String? = null
+
+    companion object {
+        fun create(request: PostCreateRequest): Post {
+            val post = Post()
+            post.title = request.title
+            post.content = request.content
+            return post
+        }
+    }
 
 }

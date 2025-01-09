@@ -6,4 +6,8 @@ interface PostService {
 
     fun save(request: PostCreateRequest)
 
+    fun update(id: Long, content: String)
+
+    fun deleteById(id: Long)
+
 }

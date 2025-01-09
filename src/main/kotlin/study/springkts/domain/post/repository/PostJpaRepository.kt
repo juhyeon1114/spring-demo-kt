@@ -4,5 +4,5 @@ import com.linecorp.kotlinjdsl.support.spring.data.jpa.repository.KotlinJdslJpql
 import org.springframework.data.jpa.repository.JpaRepository
 import study.springkts.domain.post.model.Post
 
-interface PostDatabaseRepository : JpaRepository<Post, Long>, KotlinJdslJpqlExecutor {
+interface PostJpaRepository : JpaRepository<Post, Long>, KotlinJdslJpqlExecutor {
 }

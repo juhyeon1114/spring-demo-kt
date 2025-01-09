@@ -8,7 +8,7 @@ interface PostRepository {
 
     fun save(post: Post)
 
-    fun update(content: String)
+    fun update(id: Long, content: String)
 
     fun deleteById(id: Long)
 
